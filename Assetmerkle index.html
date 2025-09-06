@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AssetMerkle — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  html,body { margin:0; padding:0; height:100%; color:#ffd24a; font-family: 'Press Start 2P', cursive; overflow-x:hidden; background:#120f2b; }
+
+  /* Pixel space background */
+  body::before {
+    content:'';
+    position:fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: repeating-linear-gradient(0deg, #1a0f3c 0px, #1a0f3c 2px, #120f2b 2px, #120f2b 4px),
+                repeating-linear-gradient(90deg, #1a0f3c 0px, #1a0f3c 2px, #120f2b 2px, #120f2b 4px);
+    z-index:0;
+  }
+
+  /* Spaceships */
+  .spaceship {
+    position: fixed;
+    width:40px; height:40px;
+    background:url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Space_Shuttle_Icon.png') no-repeat center/contain;
+    animation: flyLinear linear infinite;
+    z-index:1;
+  }
+  .spaceship.small { width:28px; height:28px; }
+  @keyframes flyLinear { 0%{left:-50px;}100%{left:110%;} }
+
+  /* Aliens */
+  .alien {
+    position: fixed;
+    width:32px; height:32px;
+    background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Alien_icon.svg/32px-Alien_icon.svg.png') no-repeat center/contain;
+    top: calc(10% + 30px * var(--i));
+    left: -50px;
+    animation: flyAlien linear infinite;
+    z-index:1;
+  }
+  .alien.small { width:24px; height:24px; }
+  @keyframes flyAlien { 0% {left:-50px;} 100% {left:110%;} }
+
+  /* Header / Menu */
+  header {
+    position: fixed;
+    top:0; left:0; right:0;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 28px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index:10;
+    border-bottom:2px solid #ffd24a;
+  }
+  header .brand { display:flex; align-items:center; gap:12px; }
+  header .brand img { height:48px; }
+  header .brand h1 { margin:0; font-size:20px; color:#ffd24a; }
+  nav a {
+    color:#ffd24a; text-decoration:none; margin-left:12px;
+    font-weight:700; padding:4px 8px; font-size:10px;
+    background: rgba(255,255,255,0.05); border-radius:6px;
+    transition: background 0.2s;
+  }
+  nav a:hover { background: rgba(255,255,255,0.2); }
+
+  /* Hero */
+  .hero { text-align:center; padding:140px 20px 100px; position:relative; z-index:2; }
+  .hero h2 { font-size:28px; margin:0 0 12px; color:#ffd24a; }
+  .hero p { font-size:14px; margin:0; }
+
+  /* Sections */
+  section { max-width:1000px; margin:0 auto; padding:60px 20px; position:relative; z-index:2; }
+  section h3 { font-size:18px; margin-bottom:20px; text-align:center; text-shadow: 2px 2px 0 rgba(0,0,0,0.4); color:#ffd24a; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+  .card { background:rgba(255,255,255,0.05); padding:20px; border-radius:12px; }
+
+  /* Mario sprite */
+  .sprite {
+    position: fixed; bottom:80px; left:50px; width:72px; height:72px;
+    cursor:pointer; z-index:3; transition: transform 0.3s;
+  }
+  .sprite.jumping { transform: translateY(-120px) rotate(-6deg) scale(1.05); transition: transform 0.5s; }
+
+  /* Coins */
+  .coin {
+    position: fixed; width:28px; height:28px; animation: coin-bob 1.6s ease-in-out infinite; z-index:2; transform-origin:center;
+  }
+  @keyframes coin-bob { 0%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-14px) rotate(20deg);}100%{transform:translateY(0) rotate(0deg);} }
+
+  /* Footer */
+  footer { text-align:center; padding:20px; background: rgba(0,0,0,0.5); position:relative; z-index:2; }
+
+  /* Section offset for header */
+  .section-offset { scroll-margin-top:100px; }
+
+  /* Responsive */
+  @media(max-width:600px){
+    header h1 { font-size:16px; }
+    nav a { font-size:8px; padding:3px 6px; margin-left:8px; }
+    .hero h2 { font-size:20px; }
+    .sprite { width:56px; height:56px; bottom:60px; }
+    .coin { width:22px; height:22px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header / Menu -->
+  <header>
+    <div class="brand">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/Emoji_u1f4c8.svg" alt="Logo">
+      <h1>AssetMerkle</h1>
+    </div>
+    <nav>
+      <a href="login.html">Login/Sign Up</a>
+      <a href="events.html">Past Events</a>
+      <a href="team.html">Our Team</a>
+      <a href="#contact">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- Spaceships -->
+  <div class="spaceship" style="top:15%; animation-duration:60s;"></div>
+  <div class="spaceship small" style="top:50%; animation-duration:80s;"></div>
+
+  <!-- Aliens -->
+  <div class="alien" style="--i:0; animation-duration:35s;"></div>
+  <div class="alien small" style="--i:1; animation-duration:45s;"></div>
+  <div class="alien" style="--i:2; animation-duration:50s;"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Welcome to AssetMerkle</h2>
+    <p>Join us to explore, build and innovate in Web3.</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-offset">
+    <h3>Contact Us</h3>
+    <p style="text-align:center;">📧 Email: contact@assetmerkle.org</p>
+    <p style="text-align:center;">🐦 Twitter: <a href="https://twitter.com" target="_blank" style="color:#ffd24a;">@AssetMerkle</a></p>
+    <p style="text-align:center;">💼 LinkedIn: <a href="https://linkedin.com" target="_blank" style="color:#ffd24a;">AssetMerkle</a></p>
+  </section>
+
+  <!-- Mario sprite -->
+  <svg class="sprite" viewBox="0 0 64 64" onclick="jumpMario()">
+    <rect x="20" y="6" width="24" height="18" rx="3" fill="#f6c85f"/>
+    <rect x="18" y="0" width="28" height="10" rx="3" fill="#c0392b"/>
+    <rect x="18" y="24" width="28" height="24" rx="4" fill="#2b6fb6"/>
+    <rect x="18" y="46" width="10" height="12" rx="2" fill="#2b2b2b"/>
+    <rect x="36" y="46" width="10" height="12" rx="2" fill="#2b2b2b"/>
+    <rect x="28" y="14" width="3" height="3" fill="#111"/>
+    <rect x="34" y="14" width="3" height="3" fill="#111"/>
+  </svg>
+
+  <!-- Coins -->
+  <svg class="coin" style="left:120px; bottom:200px;" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" fill="#ffd24a"/>
+    <circle cx="12" cy="12" r="6" fill="#fff5cc" opacity="0.25"/>
+  </svg>
+  <svg class="coin" style="left:180px; bottom:230px;" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" fill="#ffd24a"/>
+    <circle cx="12" cy="12" r="6" fill="#fff5cc" opacity="0.25"/>
+  </svg>
+  <svg class="coin" style="left:240px; bottom:210px;" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" fill="#ffd24a"/>
+    <circle cx="12" cy="12" r="6" fill="#fff5cc" opacity="0.25"/>
+  </svg>
+
+  <footer>
+    <p>© 2025 AssetMerkle — Built with ❤️ in Web3 style</p>
+  </footer>
+
+<script>
+  function jumpMario() {
+    const m = document.querySelector('.sprite');
+    if (!m.classList.contains('jumping')) {
+      m.classList.add('jumping');
+      setTimeout(()=> m.classList.remove('jumping'), 600);
+    }
+  }
+</script>
+</body>
+</html>
